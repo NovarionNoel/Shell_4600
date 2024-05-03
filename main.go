@@ -23,6 +23,7 @@ func runLoop(r io.Reader, w, errW io.Writer, exit chan struct{}) {
 		err      error
 		readLoop = bufio.NewReader(r)
 	)
+
 	for {
 		select {
 		case <-exit:

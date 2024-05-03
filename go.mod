@@ -1,4 +1,4 @@
-module github.com/NovarionNoel/4600_Shell
+module github.com/NovarionNoel/Shell_4600
 
 go 1.19
 

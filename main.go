@@ -9,7 +9,7 @@ import (
 	"os/user"
 	"strings"
 
-	"github.com/NovarionNoel/4600_Shell/builtins"
+	"github.com/NovarionNoel/Shell_4600/builtins"
 )
 
 func main() {

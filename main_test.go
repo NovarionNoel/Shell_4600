@@ -2,17 +2,21 @@ package main
 
 import (
 	"bytes"
-	"github.com/stretchr/testify/require"
 	"io"
 	"strings"
 	"testing"
 	"testing/iotest"
 	"time"
+
+	"github.com/stretchr/testify/require"
 )
 
 func Test_runLoop(t *testing.T) {
 	t.Parallel()
 	exitCmd := strings.NewReader("exit\n")
+	envCmd := strings.NewReader("env\n")
+	cdCmd := strings.NewReader("cd ..\n")
+
 	type args struct {
 		r io.Reader
 	}
@@ -32,6 +36,20 @@ func Test_runLoop(t *testing.T) {
 			name: "read error should have no effect",
 			args: args{
 				r: iotest.ErrReader(io.EOF),
+			},
+			wantErrW: "EOF",
+		},
+		{
+			name: "env should print",
+			args: args{
+				r: envCmd,
+			},
+			wantErrW: "EOF",
+		},
+		{
+			name: "cd should move",
+			args: args{
+				r: cdCmd,
 			},
 			wantErrW: "EOF",
 		},
